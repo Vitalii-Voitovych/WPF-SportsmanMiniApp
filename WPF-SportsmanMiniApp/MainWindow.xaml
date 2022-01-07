@@ -4,12 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_SportsmanMiniApp"
+        xmlns:viewModel="clr-namespace:WPF_SportsmanMiniApp.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="450" Width="800"
+        Height="550" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True">
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
     <Border CornerRadius="20" Background="#2b2d42">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,7 +24,8 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" 
+                        Grid.ColumnSpan="2">
                 <Image Width="50"
                        Height="50"
                        Source="/Images/athletics.png"
@@ -35,13 +40,63 @@
                            Margin="20,0,0,0"
                            Text="Sportsman App"/>
             </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="0">
+            <StackPanel Grid.Row="1" 
+                        Grid.Column="0">
                 <RadioButton Content="Home"
                              IsChecked="True"
-                             Style="{StaticResource MenuButtonStyle}"/>
+                             Style="{StaticResource MenuButtonStyle}"
+                             Command="{Binding HomeCommand}"/>
                 <RadioButton Content="Contact"
-                             Style="{StaticResource MenuButtonStyle}"/>
+                             Style="{StaticResource MenuButtonStyle}"
+                             Command="{Binding ContactCommand}"/>
             </StackPanel>
+            <DockPanel Grid.Column="1"
+                       Grid.Row="1">
+                <StackPanel DockPanel.Dock="Bottom"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center">
+                    <RadioButton Content="Browse"
+                         Style="{StaticResource CardButtonStyle}"
+                                 Command="{Binding BrowseCommand}">
+                        <RadioButton.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#E22525" Offset="1.0"/>
+                                <GradientStop Color="#D33131" Offset="0.0"/>
+                            </LinearGradientBrush>
+                        </RadioButton.Background>
+                    </RadioButton>
+                    <RadioButton Content="Add"
+                         Style="{StaticResource CardButtonStyle}">
+                        <RadioButton.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#0C7475" Offset="1.0"/>
+                                <GradientStop Color="#0EAE57" Offset="0.0"/>
+                            </LinearGradientBrush>
+                        </RadioButton.Background>
+                    </RadioButton>
+                    <RadioButton Content="Edit"
+                         Style="{StaticResource CardButtonStyle}">
+                        <RadioButton.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#fc4a1a" Offset="1.0"/>
+                                <GradientStop Color="#f7b733" Offset="0.0"/>
+                            </LinearGradientBrush>
+                        </RadioButton.Background>
+                    </RadioButton>
+                    <RadioButton Content="Remove"
+                         Style="{StaticResource CardButtonStyle}">
+                        <RadioButton.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#2193b0" Offset="1.0"/>
+                                <GradientStop Color="#6dd5ed" Offset="0.0"/>
+                            </LinearGradientBrush>
+                        </RadioButton.Background>
+                    </RadioButton>
+                </StackPanel>
+                <ContentControl DockPanel.Dock="Top"
+                                Content="{Binding CurrentView}"/>
+            </DockPanel>
         </Grid>
     </Border>
 </Window>

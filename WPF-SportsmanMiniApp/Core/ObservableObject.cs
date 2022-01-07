@@ -9,7 +9,7 @@ namespace WPF_SportsmanMiniApp.Core
 
         protected void OnPropertyChanged([CallerMemberName] string prop = "")
         {
-
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
     }
 }
