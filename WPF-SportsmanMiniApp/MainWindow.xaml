@@ -57,8 +57,8 @@
                             VerticalAlignment="Bottom"
                             HorizontalAlignment="Center">
                     <RadioButton Content="Browse"
-                         Style="{StaticResource CardButtonStyle}"
-                                 Command="{Binding BrowseCommand}">
+                                 Style="{StaticResource CardButtonStyle}"
+                                 Command="{Binding BrowseCommand}" Cursor="Hand">
                         <RadioButton.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Color="#E22525" Offset="1.0"/>
@@ -67,7 +67,8 @@
                         </RadioButton.Background>
                     </RadioButton>
                     <RadioButton Content="Add"
-                         Style="{StaticResource CardButtonStyle}">
+                                 Style="{StaticResource CardButtonStyle}"
+                                 Command="{Binding BrowseCommand}">
                         <RadioButton.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Color="#0C7475" Offset="1.0"/>
@@ -76,7 +77,8 @@
                         </RadioButton.Background>
                     </RadioButton>
                     <RadioButton Content="Edit"
-                         Style="{StaticResource CardButtonStyle}">
+                                 Style="{StaticResource CardButtonStyle}"
+                                 Command="{Binding BrowseCommand}">
                         <RadioButton.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Color="#fc4a1a" Offset="1.0"/>
@@ -85,7 +87,8 @@
                         </RadioButton.Background>
                     </RadioButton>
                     <RadioButton Content="Remove"
-                         Style="{StaticResource CardButtonStyle}">
+                                 Style="{StaticResource CardButtonStyle}"
+                                 Command="{Binding BrowseCommand}" Cursor="Hand">
                         <RadioButton.Background>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                                 <GradientStop Color="#2193b0" Offset="1.0"/>

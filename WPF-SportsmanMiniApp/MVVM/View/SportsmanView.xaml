@@ -4,22 +4,78 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPF_SportsmanMiniApp.MVVM.View"
+             xmlns:viewModel="clr-namespace:WPF_SportsmanMiniApp.MVVM.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="335" d:DesignWidth="650">
+    <UserControl.DataContext>
+        <viewModel:SpostsmanViewModel/>
+    </UserControl.DataContext>
     <DockPanel>
-        <StackPanel DockPanel.Dock="Bottom" 
-                    Orientation="Horizontal">
-            <Button Content="🢀"
-                    Background="#252D42"
+        <TextBlock Text="Spostsman"
+                   DockPanel.Dock="Top"
+                   Style="{StaticResource TitleTextBlockstyle}"/>
+        <Grid DockPanel.Dock="Top"
+              Margin="5,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="4*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <StackPanel>
+                <TextBlock Text="Full Name"
+                           Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <TextBox x:Name="textBoxFullName" HorizontalAlignment="Left"
+                         Text="{Binding CurrentSportsman.FullName}"
+                         Style="{StaticResource FieldTextBoxStyle}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="0" Grid.Column="1">
+                <TextBlock Text="Birthday"
+                           Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <TextBox x:Name="textBoxBirthday"
+                         HorizontalAlignment="Left"
+                         Text="{Binding CurrentSportsman.Birthday}"
+                         Style="{StaticResource FieldTextBoxStyle}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Text="Years in sports"
+                           Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <TextBox x:Name="textBoxYears" HorizontalAlignment="Left"
+                         Text="{Binding CurrentSportsman.YearsInSport}"
+                         Style="{StaticResource FieldTextBoxStyle}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <TextBlock Text="Sport"
+                           Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <TextBox x:Name="textBoxSport" 
+                         HorizontalAlignment="Left"
+                         Text="{Binding CurrentSportsman.Sport}"
+                         Style="{StaticResource FieldTextBoxStyle}"/>
+            </StackPanel>
+            <Image Grid.Column="2"
+                   Grid.RowSpan="3"
+                   Source="/Images/football.png"/>
+            <DockPanel Grid.Row="2"
+                        Grid.ColumnSpan="2">
+                <Button Content="🢀"
+                    Background="#0E151E"
                     HorizontalAlignment="Left"
-                    Style="{StaticResource RoundedButtonStyle}"/>
-            <Button Content="🢂"
-                    Background="#252D42"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Command="{Binding PrevBtnCommand}"/>
+                <Button Content="🢂"
+                    Background="#0E151E"
                     HorizontalAlignment="Left"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Command="{Binding NextBtnCommand}"/>
+                <Button Content="OK"
+                    Background="#0E151E"
+                    HorizontalAlignment="Right"
                     Style="{StaticResource RoundedButtonStyle}"/>
-        </StackPanel>
-        <Grid DockPanel.Dock="Top">
-
+            </DockPanel>
         </Grid>
     </DockPanel>
 </UserControl>

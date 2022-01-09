@@ -10,14 +10,10 @@
         <TextBlock Text="Welcome to the application"
                    Style="{StaticResource TitleTextBlockstyle}"/>
         <TextBlock Text="This application is designed to account for sportsmans"
-                   FontSize="24"
-                   FontWeight="Medium"
-                   Foreground="White"
-                   DockPanel.Dock="Top"
-                   Margin="30,15,0,0"
                    Width="300"
                    TextWrapping="Wrap"
-                   HorizontalAlignment="Left"/>
+                   HorizontalAlignment="Left"
+                   Style="{StaticResource SubtitleTextBlockStyle}"/>
         <Image Source="/Images/sportsman.png"
                Height="250"
                Width="300"

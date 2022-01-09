@@ -19,8 +19,8 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
         public object CurrentView
         {
             get { return _currentView; }
-            set 
-            { 
+            set
+            {
                 _currentView = value;
                 OnPropertyChanged();
             }
