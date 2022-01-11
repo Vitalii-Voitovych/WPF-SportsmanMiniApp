@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,44 +13,53 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
     public class SpostsmanViewModel : ObservableObject
     {
         private int index = 0;
-        public IList<Sportsman> Sportsmen { get; set; } = new ObservableCollection<Sportsman>();
+        private readonly AppDbContext db;
+        public ObservableCollection<Sportsman> Sportsmen { get; set; }
         private Sportsman currentSportsman;
+        private bool isReadOnly;
+        public bool IsReadOnlyProp
+        {
+            get => isReadOnly;
+            set
+            {
+                if(isReadOnly == value) return;
+                isReadOnly = value;
+                OnPropertyChanged();
+            }
+        }
+        private string mode;
+        public string Mode
+        {
+            get => mode;
+            set
+            {
+                if (mode == value) return;
+                mode = value;
+                OnPropertyChanged();
+            }
+        }
         public Sportsman CurrentSportsman
         {
             get => currentSportsman;
             set
             {
+                if (currentSportsman == value) return;
                 currentSportsman = value;
                 OnPropertyChanged();
             }
         }
-
         public RelayCommand PrevBtnCommand { get; set; }
         public RelayCommand NextBtnCommand { get; set; }
-
+        public RelayCommand OkBtnCommand { get; set; }
+        public RelayCommand BrowseCommand { get; set; }
+        public RelayCommand AddCommand { get; set; }
+        public RelayCommand EditCommand { get; set; }
+        public RelayCommand RemoveCommand { get; set; }
         public SpostsmanViewModel()
         {
-            Sportsmen.Add(new Sportsman()
-            {
-                FullName = "Vitalii Voitovych",
-                Birthday = DateTime.Parse("13/06/2003"),
-                Sport = "Football",
-                YearsInSport = 3
-            });
-            Sportsmen.Add(new Sportsman()
-            {
-                FullName = "Kachmar Roman",
-                Birthday = DateTime.Parse("07/11/2002"),
-                Sport = "Volleyball",
-                YearsInSport = 3
-            });
-            Sportsmen.Add(new Sportsman()
-            {
-                FullName = "Gubich Nazar",
-                Birthday = DateTime.Parse("01/10/2002"),
-                Sport = "Football",
-                YearsInSport = 4
-            });
+            db = new AppDbContext();
+            db.Sportsmen.Load();
+            Sportsmen = db.Sportsmen.Local;
             PrevBtnCommand = new RelayCommand((o) =>
             {
                 if (index > 0)
@@ -64,7 +74,42 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
                     CurrentSportsman = Sportsmen[++index];
                 }
             });
-            CurrentSportsman = Sportsmen[0];
+            BrowseCommand = new RelayCommand((o) =>
+            {
+                Mode = "Browse";
+                CurrentSportsman = Sportsmen.FirstOrDefault();
+                IsReadOnlyProp = true;
+            });
+            AddCommand = new RelayCommand((o) =>
+            {
+                Mode = "Add";
+                IsReadOnlyProp = false;
+                CurrentSportsman = new Sportsman();
+            });
+            EditCommand = new RelayCommand((o) =>
+            {
+                Mode = "Edit";
+                CurrentSportsman = Sportsmen.FirstOrDefault();
+                IsReadOnlyProp = false;
+            });
+            RemoveCommand = new RelayCommand((o) =>
+            {
+                Mode = "Remove";
+                IsReadOnlyProp = true;
+            });
+            OkBtnCommand = new RelayCommand((o) =>
+            {
+                if (Mode == "Add")
+                {
+                    Sportsmen.Add(CurrentSportsman);
+                }
+                if (Mode == "Remove")
+                {
+                    Sportsmen.Remove(CurrentSportsman);
+                    CurrentSportsman = Sportsmen.FirstOrDefault();
+                }
+                db.SaveChanges();
+            });
         }
     }
 }

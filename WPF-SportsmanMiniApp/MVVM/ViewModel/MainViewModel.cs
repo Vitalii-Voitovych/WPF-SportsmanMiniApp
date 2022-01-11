@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WPF_SportsmanMiniApp.Core;
+using WPF_SportsmanMiniApp.MVVM.Model;
 
 namespace WPF_SportsmanMiniApp.MVVM.ViewModel
 {
@@ -12,7 +13,7 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
         private object _currentView;
         public RelayCommand HomeCommand { get; set; }
         public RelayCommand ContactCommand { get; set; }
-        public RelayCommand BrowseCommand { get; set; }
+        public RelayCommand SportsmanCommand { get; }
         public HomeViewModel HomeVM { get; set; }
         public SpostsmanViewModel SpostsmanVM { get; set; }
         public ContactViewModel ContactVM { get; set; }
@@ -40,7 +41,7 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
             {
                 CurrentView = ContactVM;
             });
-            BrowseCommand = new RelayCommand((o) =>
+            SportsmanCommand = new RelayCommand((o) =>
             {
                 CurrentView = SpostsmanVM;
             });

@@ -44,59 +44,21 @@
                         Grid.Column="0">
                 <RadioButton Content="Home"
                              IsChecked="True"
+                             Height="40"
                              Style="{StaticResource MenuButtonStyle}"
                              Command="{Binding HomeCommand}"/>
+                <RadioButton Content="Sportsman Menu"
+                             IsChecked="True"
+                             Height="60"
+                             Style="{StaticResource MenuButtonStyle}"
+                             Command="{Binding SportsmanCommand}"/>
                 <RadioButton Content="Contact"
+                             Height="40"
                              Style="{StaticResource MenuButtonStyle}"
                              Command="{Binding ContactCommand}"/>
             </StackPanel>
             <DockPanel Grid.Column="1"
                        Grid.Row="1">
-                <StackPanel DockPanel.Dock="Bottom"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Bottom"
-                            HorizontalAlignment="Center">
-                    <RadioButton Content="Browse"
-                                 Style="{StaticResource CardButtonStyle}"
-                                 Command="{Binding BrowseCommand}" Cursor="Hand">
-                        <RadioButton.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#E22525" Offset="1.0"/>
-                                <GradientStop Color="#D33131" Offset="0.0"/>
-                            </LinearGradientBrush>
-                        </RadioButton.Background>
-                    </RadioButton>
-                    <RadioButton Content="Add"
-                                 Style="{StaticResource CardButtonStyle}"
-                                 Command="{Binding BrowseCommand}">
-                        <RadioButton.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#0C7475" Offset="1.0"/>
-                                <GradientStop Color="#0EAE57" Offset="0.0"/>
-                            </LinearGradientBrush>
-                        </RadioButton.Background>
-                    </RadioButton>
-                    <RadioButton Content="Edit"
-                                 Style="{StaticResource CardButtonStyle}"
-                                 Command="{Binding BrowseCommand}">
-                        <RadioButton.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#fc4a1a" Offset="1.0"/>
-                                <GradientStop Color="#f7b733" Offset="0.0"/>
-                            </LinearGradientBrush>
-                        </RadioButton.Background>
-                    </RadioButton>
-                    <RadioButton Content="Remove"
-                                 Style="{StaticResource CardButtonStyle}"
-                                 Command="{Binding BrowseCommand}" Cursor="Hand">
-                        <RadioButton.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                <GradientStop Color="#2193b0" Offset="1.0"/>
-                                <GradientStop Color="#6dd5ed" Offset="0.0"/>
-                            </LinearGradientBrush>
-                        </RadioButton.Background>
-                    </RadioButton>
-                </StackPanel>
                 <ContentControl DockPanel.Dock="Top"
                                 Content="{Binding CurrentView}"/>
             </DockPanel>

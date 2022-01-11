@@ -6,31 +6,33 @@
              xmlns:local="clr-namespace:WPF_SportsmanMiniApp.MVVM.View"
              xmlns:viewModel="clr-namespace:WPF_SportsmanMiniApp.MVVM.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="335" d:DesignWidth="650">
+             d:DesignHeight="480" d:DesignWidth="650">
     <UserControl.DataContext>
         <viewModel:SpostsmanViewModel/>
     </UserControl.DataContext>
     <DockPanel>
-        <TextBlock Text="Spostsman"
+        <TextBlock Text="Sportsman"
                    DockPanel.Dock="Top"
                    Style="{StaticResource TitleTextBlockstyle}"/>
         <Grid DockPanel.Dock="Top"
               Margin="5,20,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="4*"/>
-                <RowDefinition Height="4*"/>
                 <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <StackPanel>
                 <TextBlock Text="Full Name"
                            Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <TextBox x:Name="textBoxFullName" HorizontalAlignment="Left"
-                         Text="{Binding CurrentSportsman.FullName}"
+                <TextBox x:Name="textBoxFullName" 
+                         HorizontalAlignment="Left"
+                         IsReadOnly="{Binding IsReadOnlyProp}"
+                         Text="{Binding Path=CurrentSportsman.FullName, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1">
@@ -38,14 +40,17 @@
                            Style="{StaticResource SubtitleTextBlockStyle}"/>
                 <TextBox x:Name="textBoxBirthday"
                          HorizontalAlignment="Left"
-                         Text="{Binding CurrentSportsman.Birthday}"
+                         IsReadOnly="{Binding IsReadOnlyProp}"
+                         Text="{Binding Path=CurrentSportsman.Birthday, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1">
                 <TextBlock Text="Years in sports"
                            Style="{StaticResource SubtitleTextBlockStyle}"/>
-                <TextBox x:Name="textBoxYears" HorizontalAlignment="Left"
-                         Text="{Binding CurrentSportsman.YearsInSport}"
+                <TextBox x:Name="textBoxYears" 
+                         HorizontalAlignment="Left"
+                         IsReadOnly="{Binding IsReadOnlyProp}"
+                         Text="{Binding Path=CurrentSportsman.YearsInSport,UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="0">
@@ -53,7 +58,8 @@
                            Style="{StaticResource SubtitleTextBlockStyle}"/>
                 <TextBox x:Name="textBoxSport" 
                          HorizontalAlignment="Left"
-                         Text="{Binding CurrentSportsman.Sport}"
+                         IsReadOnly="{Binding IsReadOnlyProp}"
+                         Text="{Binding Path=CurrentSportsman.Sport, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
             </StackPanel>
             <Image Grid.Column="2"
@@ -74,8 +80,54 @@
                 <Button Content="OK"
                     Background="#0E151E"
                     HorizontalAlignment="Right"
-                    Style="{StaticResource RoundedButtonStyle}"/>
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Command="{Binding OkBtnCommand}"/>
             </DockPanel>
         </Grid>
+        <StackPanel DockPanel.Dock="Bottom"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center">
+            <RadioButton Content="Browse"
+                                 Style="{StaticResource CardButtonStyle}"
+                                 Command="{Binding BrowseCommand}" Cursor="Hand">
+                <RadioButton.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#FF8A1717" Offset="1.0"/>
+                        <GradientStop Color="#D33131" Offset="0.0"/>
+                    </LinearGradientBrush>
+                </RadioButton.Background>
+            </RadioButton>
+            <RadioButton Content="Add"
+                                 Style="{StaticResource CardButtonStyle}"
+                                 Command="{Binding AddCommand}">
+                <RadioButton.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#0C7475" Offset="1.0"/>
+                        <GradientStop Color="#0EAE57" Offset="0.0"/>
+                    </LinearGradientBrush>
+                </RadioButton.Background>
+            </RadioButton>
+            <RadioButton Content="Edit"
+                                 Style="{StaticResource CardButtonStyle}"
+                                 Command="{Binding EditCommand}">
+                <RadioButton.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#fc4a1a" Offset="1.0"/>
+                        <GradientStop Color="#f7b733" Offset="0.0"/>
+                    </LinearGradientBrush>
+                </RadioButton.Background>
+            </RadioButton>
+            <RadioButton Content="Remove"
+                                 Style="{StaticResource CardButtonStyle}"
+                                 Command="{Binding RemoveCommand}">
+                <RadioButton.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#2193b0" Offset="1.0"/>
+                        <GradientStop Color="#6dd5ed" Offset="0.0"/>
+                    </LinearGradientBrush>
+                </RadioButton.Background>
+            </RadioButton>
+        </StackPanel>
     </DockPanel>
 </UserControl>
