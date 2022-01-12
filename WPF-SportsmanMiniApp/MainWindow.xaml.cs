@@ -24,5 +24,10 @@ namespace WPF_SportsmanMiniApp
         {
             InitializeComponent();
         }
+
+        private void HeaderPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
+        }
     }
 }

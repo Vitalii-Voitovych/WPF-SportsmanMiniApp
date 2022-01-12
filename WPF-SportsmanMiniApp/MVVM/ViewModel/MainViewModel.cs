@@ -35,7 +35,6 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
             {
                 SpostsmanVM = new SpostsmanViewModel();
             });
-            ContactVM = new ContactViewModel();
             CurrentView = HomeVM;
             HomeCommand = new RelayCommand((o) =>
             {

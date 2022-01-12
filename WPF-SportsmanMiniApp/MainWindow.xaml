@@ -25,7 +25,8 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <DockPanel Grid.ColumnSpan="2">
+            <DockPanel Grid.ColumnSpan="2"
+                       MouseLeftButtonDown="HeaderPanel_MouseLeftButtonDown">
                 <Image Width="50"
                        Height="50"
                        Source="/Images/athletics.png"
@@ -39,8 +40,7 @@
                            FontWeight="Bold"
                            Margin="20,0,0,0"
                            Text="Sportsman App"/>
-                <DockPanel>
-                    <Button Content="X"
+                <Button Content="X"
                         DockPanel.Dock="Right"
                         Margin="0,0,6,0"
                         Height="50"
@@ -48,7 +48,7 @@
                         Style="{StaticResource RoundedButtonStyle}"
                         Command="{Binding CloseCommand}"
                         CommandParameter="{Binding ElementName=WindowMain}"/>
-                    <Button Content="_"
+                <Button Content="—"
                         HorizontalAlignment="Right"
                         Margin="0,0,6,0"
                         Height="50"
@@ -56,7 +56,6 @@
                         Style="{StaticResource RoundedButtonStyle}"
                         Command="{Binding MinimizeCommand}"
                         CommandParameter="{Binding ElementName=WindowMain}"/>
-                </DockPanel>
             </DockPanel>
             <StackPanel Grid.Row="1" 
                         Grid.Column="0">
