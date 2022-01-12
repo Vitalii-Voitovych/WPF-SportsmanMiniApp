@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using WPF_SportsmanMiniApp.Core;
 using WPF_SportsmanMiniApp.MVVM.Model;
 
@@ -14,7 +15,7 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
     {
         private int index = 0;
         private readonly AppDbContext db;
-        public ObservableCollection<Sportsman> Sportsmen { get; set; }
+        public ObservableCollection<Sportsman> Sportsmen { get; }
         private Sportsman currentSportsman;
         private bool isReadOnly;
         public bool IsReadOnlyProp
@@ -48,18 +49,19 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-        public RelayCommand PrevBtnCommand { get; set; }
-        public RelayCommand NextBtnCommand { get; set; }
-        public RelayCommand OkBtnCommand { get; set; }
-        public RelayCommand BrowseCommand { get; set; }
-        public RelayCommand AddCommand { get; set; }
-        public RelayCommand EditCommand { get; set; }
-        public RelayCommand RemoveCommand { get; set; }
+        public RelayCommand PrevBtnCommand { get; }
+        public RelayCommand NextBtnCommand { get; }
+        public RelayCommand OkBtnCommand { get; }
+        public RelayCommand BrowseCommand { get; }
+        public RelayCommand AddCommand { get; }
+        public RelayCommand EditCommand { get; }
+        public RelayCommand RemoveCommand { get; }
         public SpostsmanViewModel()
         {
             db = new AppDbContext();
             db.Sportsmen.Load();
             Sportsmen = db.Sportsmen.Local;
+            IsReadOnlyProp = true;
             PrevBtnCommand = new RelayCommand((o) =>
             {
                 if (index > 0)

@@ -8,8 +8,8 @@
                     <ControlTemplate TargetType="Button">
                         <Grid VerticalAlignment="Stretch"
                               HorizontalAlignment="Stretch">
-                            <Ellipse Width="45"
-                                     Height="45"
+                            <Ellipse Width="{TemplateBinding Width}"
+                                     Height="{TemplateBinding Height}"
                                      Fill="{TemplateBinding Property=Background}"/>
                             <TextBlock Text="{TemplateBinding Property=Content}"
                                        Foreground="White"

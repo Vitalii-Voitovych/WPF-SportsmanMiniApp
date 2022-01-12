@@ -10,7 +10,8 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        x:Name="WindowMain">
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
@@ -24,8 +25,7 @@
                 <RowDefinition Height="70"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" 
-                        Grid.ColumnSpan="2">
+            <DockPanel Grid.ColumnSpan="2">
                 <Image Width="50"
                        Height="50"
                        Source="/Images/athletics.png"
@@ -39,7 +39,25 @@
                            FontWeight="Bold"
                            Margin="20,0,0,0"
                            Text="Sportsman App"/>
-            </StackPanel>
+                <DockPanel>
+                    <Button Content="X"
+                        DockPanel.Dock="Right"
+                        Margin="0,0,6,0"
+                        Height="50"
+                        Width="50"
+                        Style="{StaticResource RoundedButtonStyle}"
+                        Command="{Binding CloseCommand}"
+                        CommandParameter="{Binding ElementName=WindowMain}"/>
+                    <Button Content="_"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,6,0"
+                        Height="50"
+                        Width="50"
+                        Style="{StaticResource RoundedButtonStyle}"
+                        Command="{Binding MinimizeCommand}"
+                        CommandParameter="{Binding ElementName=WindowMain}"/>
+                </DockPanel>
+            </DockPanel>
             <StackPanel Grid.Row="1" 
                         Grid.Column="0">
                 <RadioButton Content="Home"
@@ -52,10 +70,6 @@
                              Height="60"
                              Style="{StaticResource MenuButtonStyle}"
                              Command="{Binding SportsmanCommand}"/>
-                <RadioButton Content="Contact"
-                             Height="40"
-                             Style="{StaticResource MenuButtonStyle}"
-                             Command="{Binding ContactCommand}"/>
             </StackPanel>
             <DockPanel Grid.Column="1"
                        Grid.Row="1">

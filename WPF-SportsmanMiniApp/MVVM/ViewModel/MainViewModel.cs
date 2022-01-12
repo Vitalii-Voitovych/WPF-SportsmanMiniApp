@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using WPF_SportsmanMiniApp.Core;
 using WPF_SportsmanMiniApp.MVVM.Model;
 
@@ -11,12 +12,12 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
     public class MainViewModel : ObservableObject
     {
         private object _currentView;
-        public RelayCommand HomeCommand { get; set; }
-        public RelayCommand ContactCommand { get; set; }
+        public RelayCommand HomeCommand { get; }
         public RelayCommand SportsmanCommand { get; }
-        public HomeViewModel HomeVM { get; set; }
+        public RelayCommand CloseCommand { get; }
+        public RelayCommand MinimizeCommand { get; }
+        public HomeViewModel HomeVM { get;  }
         public SpostsmanViewModel SpostsmanVM { get; set; }
-        public ContactViewModel ContactVM { get; set; }
         public object CurrentView
         {
             get { return _currentView; }
@@ -30,20 +31,33 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
         public MainViewModel()
         {
             HomeVM = new HomeViewModel();
-            SpostsmanVM = new SpostsmanViewModel();
+            Task.Run(() =>
+            {
+                SpostsmanVM = new SpostsmanViewModel();
+            });
             ContactVM = new ContactViewModel();
             CurrentView = HomeVM;
             HomeCommand = new RelayCommand((o) =>
             {
                 CurrentView = HomeVM;
             });
-            ContactCommand = new RelayCommand((o) =>
-            {
-                CurrentView = ContactVM;
-            });
             SportsmanCommand = new RelayCommand((o) =>
             {
                 CurrentView = SpostsmanVM;
+            });
+            CloseCommand = new RelayCommand((o) =>
+            {
+                if (o is Window window)
+                {
+                    window.Close();
+                }
+            });
+            MinimizeCommand = new RelayCommand((o) =>
+            {
+                if (o is Window window)
+                {
+                    window.WindowState = WindowState.Minimized;
+                }
             });
         }
     }

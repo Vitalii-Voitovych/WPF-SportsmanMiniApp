@@ -70,16 +70,22 @@
                 <Button Content="🢀"
                     Background="#0E151E"
                     HorizontalAlignment="Left"
+                        Width="45"
+                    Height="45"
                     Style="{StaticResource RoundedButtonStyle}"
                     Command="{Binding PrevBtnCommand}"/>
                 <Button Content="🢂"
                     Background="#0E151E"
                     HorizontalAlignment="Left"
+                    Width="45"
+                    Height="45"
                     Style="{StaticResource RoundedButtonStyle}"
-                    Command="{Binding NextBtnCommand}"/>
+                    Command="{Binding NextBtnCommand}" Cursor="Hand"/>
                 <Button Content="OK"
                     Background="#0E151E"
                     HorizontalAlignment="Right"
+                    Width="45"
+                    Height="45"
                     Style="{StaticResource RoundedButtonStyle}"
                     Command="{Binding OkBtnCommand}"/>
             </DockPanel>
