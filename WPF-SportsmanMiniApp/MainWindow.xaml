@@ -26,6 +26,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <DockPanel Grid.ColumnSpan="2"
+                       Background="Transparent"
                        MouseLeftButtonDown="HeaderPanel_MouseLeftButtonDown">
                 <Image Width="50"
                        Height="50"

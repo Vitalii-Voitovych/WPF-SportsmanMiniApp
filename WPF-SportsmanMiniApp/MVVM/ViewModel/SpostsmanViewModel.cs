@@ -14,8 +14,8 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
     public class SpostsmanViewModel : ObservableObject
     {
         private int index = 0;
-        private readonly AppDbContext db;
-        public ObservableCollection<Sportsman> Sportsmen { get; }
+        private AppDbContext db;
+        public ObservableCollection<Sportsman> Sportsmen { get; private set; }
         private Sportsman currentSportsman;
         private bool isReadOnly;
         public bool IsReadOnlyProp
@@ -58,9 +58,12 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
         public RelayCommand RemoveCommand { get; }
         public SpostsmanViewModel()
         {
-            db = new AppDbContext();
-            db.Sportsmen.Load();
-            Sportsmen = db.Sportsmen.Local;
+            Task.Run(() =>
+            {
+                db = new AppDbContext();
+                db.Sportsmen.Load();
+                Sportsmen = db.Sportsmen.Local;
+            });
             IsReadOnlyProp = true;
             PrevBtnCommand = new RelayCommand((o) =>
             {

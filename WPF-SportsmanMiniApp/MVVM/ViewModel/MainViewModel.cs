@@ -31,10 +31,7 @@ namespace WPF_SportsmanMiniApp.MVVM.ViewModel
         public MainViewModel()
         {
             HomeVM = new HomeViewModel();
-            Task.Run(() =>
-            {
-                SpostsmanVM = new SpostsmanViewModel();
-            });
+            SpostsmanVM = new SpostsmanViewModel();
             CurrentView = HomeVM;
             HomeCommand = new RelayCommand((o) =>
             {
