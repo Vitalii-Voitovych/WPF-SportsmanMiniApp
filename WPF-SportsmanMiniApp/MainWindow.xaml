@@ -18,59 +18,64 @@
     <Border CornerRadius="20" Background="#2b2d42">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="170"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <DockPanel Grid.ColumnSpan="2"
-                       Background="Transparent"
-                       MouseLeftButtonDown="HeaderPanel_MouseLeftButtonDown">
-                <Image Width="50"
+            <Border CornerRadius="20,20,0,0"
+                    Grid.ColumnSpan="2">
+                <DockPanel Background="Transparent"
+                           MouseLeftButtonDown="HeaderPanel_MouseLeftButtonDown">
+                    <Image Width="50"
                        Height="50"
                        Source="/Images/athletics.png"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        Margin="10,0,0,0"/>
-                <TextBlock HorizontalAlignment="Center"
+                    <TextBlock HorizontalAlignment="Center"
                            VerticalAlignment="Center"
-                           Foreground="#edf2f4"
+                           Foreground="White"
                            FontSize="24"
                            FontWeight="Bold"
                            Margin="20,0,0,0"
                            Text="Sportsman App"/>
-                <Button Content="X"
+                    <Button Content="X"
                         DockPanel.Dock="Right"
                         Margin="0,0,6,0"
-                        Height="50"
-                        Width="50"
-                        Style="{StaticResource RoundedButtonStyle}"
+                        Height="35"
+                        Width="35"
+                        Style="{StaticResource HeaderButtonStyle}"
                         Command="{Binding CloseCommand}"
-                        CommandParameter="{Binding ElementName=WindowMain}"/>
-                <Button Content="—"
+                        CommandParameter="{Binding ElementName=WindowMain}" Cursor="Hand"/>
+                    <Button Content="—"
                         HorizontalAlignment="Right"
                         Margin="0,0,6,0"
-                        Height="50"
-                        Width="50"
-                        Style="{StaticResource RoundedButtonStyle}"
+                        Height="35"
+                        Width="35"
+                        Style="{StaticResource HeaderButtonStyle}"
                         Command="{Binding MinimizeCommand}"
                         CommandParameter="{Binding ElementName=WindowMain}"/>
-            </DockPanel>
-            <StackPanel Grid.Row="1" 
+                </DockPanel>
+            </Border>
+            <Border CornerRadius="0,0,0,20"
+                    Grid.Column="0"
+                    Grid.Row="1">
+                <StackPanel Grid.Row="1" 
                         Grid.Column="0">
-                <RadioButton Content="Home"
+                    <RadioButton Content="Home"
                              IsChecked="True"
-                             Height="40"
+                             Height="35"
                              Style="{StaticResource MenuButtonStyle}"
-                             Command="{Binding HomeCommand}"/>
-                <RadioButton Content="Sportsman Menu"
-                             IsChecked="True"
-                             Height="60"
+                             Command="{Binding HomeCommand}" Cursor="Hand"/>
+                    <RadioButton Content="Sportsman"
+                             Height="30"
                              Style="{StaticResource MenuButtonStyle}"
                              Command="{Binding SportsmanCommand}"/>
-            </StackPanel>
+                </StackPanel>
+            </Border>
             <DockPanel Grid.Column="1"
                        Grid.Row="1">
                 <ContentControl DockPanel.Dock="Top"
